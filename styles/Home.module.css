@@ -16,17 +16,17 @@
 }
 
 .circle {
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   border-radius: 100%;
 }
 
 .row {
   display: grid;
-  grid-template-columns: 80px 1fr 120px;
+  grid-template-columns: 65px 1fr 120px;
   grid-column-gap: 36px;
   width: 100%;
-  padding: 16px 24px;
+  padding: 14px 24px;
   justify-content: start;
   align-items: center;
   background-color: #FAFAFA;

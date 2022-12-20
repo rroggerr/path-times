@@ -32,6 +32,9 @@ export const useGetTimes = ({
     projectedArrival: new Date(train.projectedArrival),
     lastUpdated: new Date(train.lastUpdated),
   }));
+  const sortedArrivals = mappedRes.sort((a, b) =>
+    a.projectedArrival > b.projectedArrival ? 1 : -1
+  );
 
-  return mappedRes?.slice(0, len);
+  return sortedArrivals?.slice(0, len);
 };

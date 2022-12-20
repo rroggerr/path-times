@@ -1,0 +1,14 @@
+{
+  "short_name": "PATH Times",
+  "name": "PATH train time display",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "683x683"
+    }
+  ],
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "display": "fullscreen"
+}

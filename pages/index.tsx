@@ -6,7 +6,7 @@ import { useGetTimes } from "../utils/useGetTimes";
 
 export default function Home() {
   const station = Station.GROVE_STREET;
-  const data = useGetTimes({ station, dir: Direction.TO_NY, len: 2 });
+  const data = useGetTimes({ station, dir: Direction.ALL, len: 3 });
 
   return (
     <>
@@ -14,6 +14,7 @@ export default function Home() {
         <title>Path Times</title>
         <meta name="description" content="Get the latest PATH train times" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
