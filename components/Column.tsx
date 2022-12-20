@@ -1,17 +1,18 @@
-import { MappedTrain, Status } from "../types/Train";
+import { Train, Status } from "../types/Train";
 import { InfoBox } from "./InfoBox";
 import { Row } from "./row";
 import styles from "../styles/Home.module.css";
 
 interface Props {
-  trains: MappedTrain[];
+  trains: Train[];
 }
 
-const getRemainingTime = (train: MappedTrain) => {
+const getRemainingTime = (train: Train) => {
   return Math.max(
     0,
     Math.round(
-      (train.projectedArrival.getTime() - new Date().getTime()) / 60000
+      (new Date(train.projectedArrival).getTime() - new Date().getTime()) /
+        60000
     )
   );
 };

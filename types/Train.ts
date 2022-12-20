@@ -37,8 +37,3 @@ export interface Train {
   projectedArrival: string;
   lastUpdated: string;
 }
-
-export type MappedTrain = Omit<Train, "projectedArrival" | "lastUpdated"> & {
-  projectedArrival: Date;
-  lastUpdated: Date;
-};
