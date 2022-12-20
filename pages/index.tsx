@@ -6,8 +6,7 @@ import { useGetTimes } from "../utils/useGetTimes";
 
 export default function Home() {
   const station = Station.GROVE_STREET;
-  // const data = useGetTimes({ station, dir: Direction.TO_NY });
-  const data = useGetTimes({ station });
+  const data = useGetTimes({ station, dir: Direction.TO_NY, len: 2 });
 
   return (
     <>

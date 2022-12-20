@@ -32,6 +32,36 @@
   background-color: #FAFAFA;
 }
 
+
+@keyframes approaching {
+  0% {
+    background-color: #FAFAFA;
+    color: black;
+  }
+  50% {
+    background-color: #003DA0;
+    color: white;
+  }
+  100% {
+    background-color: #FAFAFA;
+    color: black;
+  }
+}
+
+.rowApproaching {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px;
+  grid-column-gap: 36px;
+  width: 100%;
+  padding: 16px 24px;
+  justify-content: start;
+  align-items: center;
+  background-color: #FAFAFA;
+  animation-name: approaching;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
+
 .row:not(:last-child) {
   border-bottom: solid 2px lightgray;
 }
@@ -96,5 +126,5 @@
 .timeStr {
   color: white;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 32px;
 }

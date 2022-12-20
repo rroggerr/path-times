@@ -19,7 +19,7 @@ export const useGetTimes = ({
   const { data } = useSWR<Schedule>(
     `https://path.api.razza.dev/v1/stations/${station}/realtime`,
     (url) => fetch(url).then((res) => res.json()),
-    { refreshInterval: 15000 }
+    { refreshInterval: 20000 }
   );
 
   const trains = data?.upcomingTrains ?? [];
@@ -30,6 +30,7 @@ export const useGetTimes = ({
   const mappedRes = filteredTrains?.map((train) => ({
     ...train,
     projectedArrival: new Date(train.projectedArrival),
+    lastUpdated: new Date(train.lastUpdated),
   }));
 
   return mappedRes?.slice(0, len);

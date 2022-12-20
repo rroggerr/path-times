@@ -4,12 +4,19 @@ interface RowProps {
   circles: string[];
   lineName: string;
   arrMins: number;
+  isApproaching: boolean;
   isDelay?: boolean;
 }
 
-export const Row = ({ circles, lineName, arrMins }: RowProps) => {
+export const Row = ({
+  circles,
+  lineName,
+  arrMins,
+  isDelay,
+  isApproaching,
+}: RowProps) => {
   return (
-    <div className={styles.row}>
+    <div className={isApproaching ? styles.rowApproaching : styles.row}>
       <div
         key={circles[0]}
         className={styles.circle}
@@ -19,11 +26,17 @@ export const Row = ({ circles, lineName, arrMins }: RowProps) => {
         }}
       ></div>
       <p className={styles.lineText}>{lineName}</p>
-      <div className={styles.timeBox}>
-        <p className={styles.timeText}>{arrMins}</p>
-        &nbsp;&nbsp;
-        <p className={styles.minText}>min</p>
-      </div>
+      <>
+        {isDelay && (
+          <p className={`${styles.timeText} ${styles.delayText}`}>Delay</p>
+        )}
+        {!isDelay && (
+          <div className={`${styles.timeBox} ${styles.fadeInOut}`}>
+            <p className={styles.timeText}>{arrMins}</p>&nbsp;&nbsp;
+            <p className={styles.minText}>min</p>
+          </div>
+        )}
+      </>
     </div>
   );
 };
