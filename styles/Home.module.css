@@ -16,14 +16,19 @@
 }
 
 .circle {
-  width: 65px;
-  height: 65px;
+  width: var(--circle-height);
+  height: var(--circle-height);
   border-radius: 100%;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
 }
 
 .row {
   display: grid;
-  grid-template-columns: 65px 1fr 120px;
+  grid-template-columns: var(--circle-height) 1fr 120px;
   grid-column-gap: 36px;
   width: 100%;
   padding: 14px 24px;

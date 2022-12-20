@@ -1,6 +1,7 @@
 import { MappedTrain, Status } from "../types/Train";
 import { InfoBox } from "./InfoBox";
 import { Row } from "./row";
+import styles from "../styles/Home.module.css";
 
 interface Props {
   trains: MappedTrain[];
@@ -17,7 +18,7 @@ const getRemainingTime = (train: MappedTrain) => {
 
 export const Column = ({ trains }: Props) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className={styles.column}>
       {trains.map((train) => (
         <Row
           key={train.lineName}

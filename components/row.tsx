@@ -18,7 +18,6 @@ export const Row = ({
   return (
     <div className={isApproaching ? styles.rowApproaching : styles.row}>
       <div
-        key={circles[0]}
         className={styles.circle}
         style={{
           backgroundColor: circles[0],
