@@ -8,8 +8,11 @@ interface Props {
 }
 
 const getRemainingTime = (train: Train) => {
+  if (train.status === Status.ARRIVING_NOW) {
+    return 0;
+  }
   return Math.max(
-    0,
+    1,
     Math.round(
       (new Date(train.projectedArrival).getTime() - new Date().getTime()) /
         60000
