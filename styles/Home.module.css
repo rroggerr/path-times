@@ -102,6 +102,8 @@
 }
 
 .infoBox{
+  position: fixed;
+  bottom: 0;
   display: flex;
   padding: 0 12px 0 0;
   justify-content: space-between;

@@ -9,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Train[]>
 ) {
-  const { len, dir, station } = req.query;
+  const { dir, station } = req.query;
   const url = `https://path.api.razza.dev/v1/stations/${station}/realtime`;
   const resp = await fetch(url);
   const json: Schedule = await resp.json();
@@ -23,7 +23,5 @@ export default async function handler(
     a.projectedArrival > b.projectedArrival ? 1 : -1
   );
 
-  const parsedLen = parseInt(len?.toString() ?? '0', 10);
-  const slicedArr = sortedArrivals?.slice(0, parsedLen);
-  res.status(200).json(slicedArr);
+  res.status(200).json(sortedArrivals);
 }

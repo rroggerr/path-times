@@ -10,7 +10,6 @@ export default function Home() {
   const { data, isLoading } = useGetTimes({
     station,
     dir: Direction.ALL,
-    len: 3,
   });
   useConstantWakeLock();
 

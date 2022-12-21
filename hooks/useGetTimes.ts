@@ -8,13 +8,9 @@ interface Params {
   len?: number;
 }
 
-export const useGetTimes = ({
-  station,
-  dir,
-  len = 3,
-}: Params): SWRResponse<Train[]> => {
+export const useGetTimes = ({ station, dir }: Params): SWRResponse<Train[]> => {
   return useSWR(
-    `/api/trains?dir=${dir}&len=${len}&station=${station}`,
+    `/api/trains?dir=${dir}&station=${station}`,
     (url: string) => fetch(url).then((resp) => resp.json()),
     { refreshInterval: 20000 }
   );
