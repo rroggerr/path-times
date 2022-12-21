@@ -1,13 +1,17 @@
 import Head from "next/head";
 import { Column } from "../components/Column";
+import { InfoBox } from "../components/InfoBox";
 import styles from "../styles/Home.module.css";
-import { Direction, Station } from "../types/Train";
-import { useGetTimes } from "../hooks/useGetTimes";
-import { useConstantWakeLock } from "../hooks/useConstantWakeLock";
+import { Direction } from "../types/Train";
+import { useConstantWakeLock, useGetTimes, useStation } from "../hooks";
 
 export default function Home() {
-  const station = Station.GROVE_STREET;
-  const {data, isLoading} = useGetTimes({ station, dir: Direction.ALL, len: 3 });
+  const { station, relocate, isLocating } = useStation();
+  const { data, isLoading } = useGetTimes({
+    station,
+    dir: Direction.ALL,
+    len: 3,
+  });
   useConstantWakeLock();
 
   return (
@@ -25,6 +29,7 @@ export default function Home() {
       <main className={styles.main}>
         {isLoading && <p>Loading</p>}
         {data && <Column trains={data} />}
+        <InfoBox onClickLocate={relocate} isLocating={isLocating} />
       </main>
     </>
   );

@@ -102,6 +102,9 @@
 }
 
 .infoBox{
+  display: flex;
+  padding: 0 12px 0 0;
+  justify-content: space-between;
   justify-self: flex-end;
   width: 100%;
   height: var(--infobox-height);
@@ -132,4 +135,10 @@
   color: white;
   font-weight: 600;
   font-size: 32px;
+}
+
+.locateBtn {
+  cursor: pointer;
+  border: none;
+  background: none;
 }

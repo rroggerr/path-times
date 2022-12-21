@@ -1,5 +1,4 @@
 import { Train, Status } from "../types/Train";
-import { InfoBox } from "./InfoBox";
 import { Row } from "./row";
 import styles from "../styles/Home.module.css";
 
@@ -36,7 +35,6 @@ export const Column = ({ trains }: Props) => {
           />
         );
       })}
-      <InfoBox />
     </div>
   );
 };

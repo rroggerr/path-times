@@ -1,5 +1,6 @@
 import useSWR, { SWRResponse } from "swr";
-import { Train, Direction, Station } from "../types/Train";
+import { Train, Direction } from "../types/Train";
+import {Station} from '../types/Station'
 
 interface Params {
   station: Station;
