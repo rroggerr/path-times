@@ -1,9 +1,9 @@
-import Head from "next/head";
-import { Column } from "../components/Column";
-import { InfoBox } from "../components/InfoBox";
-import styles from "../styles/Home.module.css";
-import { Direction } from "../types/Train";
-import { useConstantWakeLock, useGetTimes, useStation } from "../hooks";
+import Head from 'next/head';
+import { Column } from '../components/Column';
+import { InfoBox } from '../components/InfoBox';
+import styles from '../styles/Home.module.css';
+import { Direction } from '../types/Train';
+import { useConstantWakeLock, useGetTimes, useStation } from '../hooks';
 
 export default function Home() {
   const { station, relocate, isLocating } = useStation();

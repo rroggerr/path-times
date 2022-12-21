@@ -1,5 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { Train } from "../../types/Train";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { Train } from '../../types/Train';
 
 interface Schedule {
   upcomingTrains: Train[];
@@ -23,7 +23,7 @@ export default async function handler(
     a.projectedArrival > b.projectedArrival ? 1 : -1
   );
 
-  const parsedLen = parseInt(len?.toString() ?? "0", 10);
+  const parsedLen = parseInt(len?.toString() ?? '0', 10);
   const slicedArr = sortedArrivals?.slice(0, parsedLen);
   res.status(200).json(slicedArr);
 }

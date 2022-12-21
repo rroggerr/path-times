@@ -1,5 +1,5 @@
-import styles from "../styles/Home.module.css";
-import Image from "next/image";
+import styles from '../styles/Home.module.css';
+import Image from 'next/image';
 
 type Props = {
   onClickLocate: () => void;
@@ -10,8 +10,8 @@ export const InfoBox = ({ onClickLocate, isLocating }: Props) => {
   const time = new Date();
   const timeStr = time
     .toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
+      hour: '2-digit',
+      minute: '2-digit',
     })
     .toLocaleLowerCase();
   return (
@@ -20,7 +20,7 @@ export const InfoBox = ({ onClickLocate, isLocating }: Props) => {
         <p className={styles.timeStr}>{timeStr}</p>
       </div>
       {isLocating ? (
-        <p style={{ color: "white", fontSize: "24px", alignSelf: "center" }}>
+        <p style={{ color: 'white', fontSize: '24px', alignSelf: 'center' }}>
           ...
         </p>
       ) : (

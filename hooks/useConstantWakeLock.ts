@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useWakeLock } from "react-screen-wake-lock";
+import { useEffect } from 'react';
+import { useWakeLock } from 'react-screen-wake-lock';
 
 export const useConstantWakeLock = () => {
   const { isSupported, request, release } = useWakeLock({});

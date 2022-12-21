@@ -1,6 +1,6 @@
-import { Train, Status } from "../types/Train";
-import { Row } from "./row";
-import styles from "../styles/Home.module.css";
+import { Train, Status } from '../types/Train';
+import { Row } from './row';
+import styles from '../styles/Home.module.css';
 
 interface Props {
   trains: Train[];

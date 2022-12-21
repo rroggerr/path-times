@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { getNearestStation } from "../components/getStation";
-import { Station } from "../types/Station";
+import { useEffect, useState } from 'react';
+import { getNearestStation } from '../components/getStation';
+import { Station } from '../types/Station';
 
 export const useStation = () => {
   const [isLocating, setIsLocating] = useState(false);
