@@ -7,7 +7,7 @@ import { useConstantWakeLock } from "../hooks/useConstantWakeLock";
 
 export default function Home() {
   const station = Station.GROVE_STREET;
-  const data = useGetTimes({ station, dir: Direction.ALL, len: 3 });
+  const {data, isLoading} = useGetTimes({ station, dir: Direction.ALL, len: 3 });
   useConstantWakeLock();
 
   return (
@@ -23,7 +23,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Column trains={data} />
+        {isLoading && <p>Loading</p>}
+        {data && <Column trains={data} />}
       </main>
     </>
   );

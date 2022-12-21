@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWR, { SWRResponse } from "swr";
 import { Train, Direction, Station } from "../types/Train";
 
 interface Params {
@@ -7,11 +7,14 @@ interface Params {
   len?: number;
 }
 
-export const useGetTimes = ({ station, dir, len = 3 }: Params): Train[] => {
-  const { data } = useSWR(
-    `/api/trains/?dir=${dir}&len=${len}&station=${station}`,
+export const useGetTimes = ({
+  station,
+  dir,
+  len = 3,
+}: Params): SWRResponse<Train[]> => {
+  return useSWR(
+    `/api/trains?dir=${dir}&len=${len}&station=${station}`,
     (url: string) => fetch(url).then((resp) => resp.json()),
     { refreshInterval: 20000 }
   );
-  return data ?? [];
 };

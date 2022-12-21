@@ -23,16 +23,19 @@ const getRemainingTime = (train: Train) => {
 export const Column = ({ trains }: Props) => {
   return (
     <div className={styles.column}>
-      {trains.map((train) => (
-        <Row
-          key={train.lineName}
-          lineName={train.lineName}
-          arrMins={getRemainingTime(train)}
-          circles={train.lineColors}
-          isApproaching={train.status === Status.ARRIVING_NOW}
-          isDelay={train.status === Status.DELAY}
-        />
-      ))}
+      {trains.map((train) => {
+        const arrMins = getRemainingTime(train);
+        return (
+          <Row
+            key={`${train.lineName}-${train.status}-${arrMins}`}
+            lineName={train.lineName}
+            arrMins={arrMins}
+            circles={train.lineColors}
+            isApproaching={train.status === Status.ARRIVING_NOW}
+            isDelay={train.status === Status.DELAY}
+          />
+        );
+      })}
       <InfoBox />
     </div>
   );
