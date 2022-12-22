@@ -1,0 +1,10 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: var(--topnav-height);
+  background-color: black;
+  width: 100%;
+  color: white;
+}

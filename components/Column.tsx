@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Train, Status } from '../types/Train';
 import { Row } from './Row';
 import styles from '../styles/Home.module.css';
@@ -20,7 +21,19 @@ const getRemainingTime = (train: Train) => {
   );
 };
 
+const getAbsTime = (train: Train) => {
+  return new Date(train.projectedArrival).toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+};
+
 export const Column = ({ trains, isNarrow }: Props) => {
+  const [showAbsTime, setShowAbsTime] = useState(false);
+  const toggleAbsTime = () => {
+    setShowAbsTime((show) => !show);
+  };
   return (
     <div className={styles.column}>
       {trains.map((train) => {
@@ -34,6 +47,9 @@ export const Column = ({ trains, isNarrow }: Props) => {
             isApproaching={train.status === Status.ARRIVING_NOW}
             isDelay={train.status === Status.DELAY}
             isNarrow={isNarrow}
+            showAbsTime={showAbsTime}
+            absTime={getAbsTime(train)}
+            onClick={toggleAbsTime}
           />
         );
       })}

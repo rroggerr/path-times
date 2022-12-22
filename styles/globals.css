@@ -1,9 +1,10 @@
 :root {
   --path-light-blue: #0094CE;
   --path-dark-blue: #0047BB;
-  --infobox-height: 80px;
+  --infobox-height: 64px;
   --circle-height: 72px;
   --circle-height-narrow: 56px;
+  --topnav-height: 32px;
 }
 
 * {

@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Row.module.css';
 import { getShortLineName } from './getLineName';
 
 interface RowProps {
@@ -8,6 +8,9 @@ interface RowProps {
   isApproaching: boolean;
   isDelay?: boolean;
   isNarrow: boolean;
+  showAbsTime: boolean;
+  absTime: string;
+  onClick: () => void;
 }
 
 export const Row = ({
@@ -17,14 +20,19 @@ export const Row = ({
   isDelay,
   isApproaching,
   isNarrow,
+  showAbsTime,
+  absTime,
+  onClick,
 }: RowProps) => {
   const displayLineName = isNarrow ? getShortLineName(lineName) : lineName;
   const circleOffset = isNarrow ? '-10px' : '-12px';
   return (
     <div
       className={`${isApproaching ? styles.approaching : ''} ${
-        isNarrow ? styles.narrowRow : styles.row
+        isNarrow ? styles.narrowRow : ''
+      } ${styles.row}
       }`}
+      onClick={onClick}
     >
       <div
         className={isNarrow ? styles.narrowCircle : styles.circle}
@@ -42,8 +50,14 @@ export const Row = ({
         )}
         {!isDelay && (
           <div className={`${styles.timeBox} ${styles.fadeInOut}`}>
-            <p className={styles.timeText}>{arrMins}</p>&nbsp;&nbsp;
-            <p className={styles.minText}>min</p>
+            {showAbsTime ? (
+              <p className={styles.timeText}>{absTime}</p>
+            ) : (
+              <>
+                <p className={styles.timeText}>{arrMins}</p>&nbsp;&nbsp;
+                <p className={styles.minText}>min</p>
+              </>
+            )}
           </div>
         )}
       </>

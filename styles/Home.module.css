@@ -15,103 +15,9 @@
   font-family: var(--font-mono);
 }
 
-.circle {
-  width: var(--circle-height);
-  height: var(--circle-height);
-  border-radius: 100%;
-}
-
-.narrowCircle {
-  width: var(--circle-height-narrow);
-  height: var(--circle-height-narrow);
-  border-radius: 100%;
-}
-
 .column {
   display: flex;
   flex-direction: column;
-}
-
-.narrowRow {
-  display: grid;
-  grid-template-columns: var(--circle-height-narrow) 1fr 120px;
-  grid-column-gap: 16px;
-  width: 100%;
-  padding: 18px 18px;
-  justify-content: start;
-  align-items: center;
-  background-color: #FAFAFA;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: var(--circle-height) 1fr 120px;
-  grid-column-gap: 36px;
-  width: 100%;
-  padding: 14px 24px;
-  justify-content: start;
-  align-items: center;
-  background-color: #FAFAFA;
-}
-
-@keyframes approaching {
-  0% {
-    background-color: #FAFAFA;
-    color: black;
-  }
-  50% {
-    background-color: #003DA0;
-    color: rgb(251, 255, 0);
-  }
-  100% {
-    background-color: #FAFAFA;
-    color: black;
-  }
-}
-
-.approaching {
-  background-color: #FAFAFA;
-  animation-name: approaching;
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
-}
-
-.row:not(:last-child) {
-  border-bottom: solid 2px lightgray;
-}
-
-.row:last-child {
-  margin-bottom: var(--infobox-height);
-}
-
-.lineText {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-weight: 400;
-  font-size: 38px;
-}
-
-.timeText {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-weight: 500;
-  font-size: 42px;
-}
-
-.minText {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-weight: 400;
-  font-size: 32px;
-}
-
-.timeBox {
-  display: flex; 
-  width: 100%;
-  justify-content: flex-end;
 }
 
 .infoBox{
@@ -121,6 +27,7 @@
   padding: 0 12px 0 0;
   justify-content: space-between;
   justify-self: flex-end;
+  align-items: center;
   width: 100%;
   height: var(--infobox-height);
   background-color: var(--path-dark-blue);
@@ -131,7 +38,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 160px;
+  width: 140px;
   height: 100%;
   background-color: var(--path-light-blue);
 }
@@ -148,12 +55,31 @@
 
 .timeStr {
   color: white;
-  font-weight: 600;
-  font-size: 32px;
+  font-weight: 550;
+  font-size: 28px;
 }
 
 .locateBtn {
   cursor: pointer;
   border: none;
   background: none;
+}
+
+@keyframes flashing {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flashing {
+  opacity: 1;
+  animation-name: flashing;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
 }

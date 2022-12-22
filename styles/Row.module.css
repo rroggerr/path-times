@@ -1,0 +1,93 @@
+.circle {
+  width: var(--circle-height);
+  height: var(--circle-height);
+  border-radius: 100%;
+}
+
+.narrowCircle {
+  width: var(--circle-height-narrow);
+  height: var(--circle-height-narrow);
+  border-radius: 100%;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--circle-height) 1fr 120px;
+  grid-column-gap: 36px;
+  width: 100%;
+  padding: 12px 24px;
+  justify-content: start;
+  align-items: center;
+  background-color: #FAFAFA;
+}
+
+.narrowRow {
+  width: 100%;
+  grid-template-columns: var(--circle-height-narrow) 1fr 100px;
+  grid-column-gap: 16px;
+  padding: 18px 18px;
+}
+
+@keyframes approaching {
+  0% {
+    background-color: #FAFAFA;
+    color: black;
+  }
+  50% {
+    background-color: #003DA0;
+    color: rgb(251, 255, 0);
+  }
+  100% {
+    background-color: #FAFAFA;
+    color: black;
+  }
+}
+
+.approaching {
+  background-color: #FAFAFA;
+  animation-name: approaching;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
+
+.row:first-child {
+  margin-top: var(--topnav-height);
+}
+
+.row:not(:last-child) {
+  border-bottom: solid 2px lightgray;
+}
+
+.row:last-child {
+  margin-bottom: var(--infobox-height);
+}
+
+.timeText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 500;
+  font-size: 42px;
+}
+
+.minText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 400;
+  font-size: 32px;
+}
+
+.timeBox {
+  display: flex; 
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.lineText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 400;
+  font-size: 38px;
+}
