@@ -6,6 +6,11 @@
       "src": "/icon.svg",
       "type": "image/svg+xml",
       "sizes": "683x683"
+    },
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "600x600"
     }
   ],
   "id": "/?source=pwa",

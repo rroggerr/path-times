@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 import { Direction } from '../types/Train';
 import { useConstantWakeLock, useGetTimes, useStation, useWindowWidth } from '../hooks';
 import { TopNav } from '../components/TopNav';
+import { Metadata } from '../components/Metadata';
 
 export default function Home() {
   const { station, isLocating, setStation } = useStation();
@@ -19,13 +20,7 @@ export default function Home() {
     <>
       <Head>
         <title>{`Path Schedule - ${station.name}`}</title>
-        <meta name="description" content="Get the latest PATH train times" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
-        />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
+        <Metadata />
       </Head>
       <main className={styles.main}>
         <TopNav selectedStation={station} setStation={setStation} />
