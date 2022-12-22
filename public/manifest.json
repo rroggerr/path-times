@@ -1,6 +1,6 @@
 {
   "short_name": "PATH Schedule",
-  "name": "An app to get realtime PATH train times",
+  "name": "Get realtime PATH train updates",
   "icons": [
     {
       "src": "/icon.svg",
