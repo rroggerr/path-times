@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Path Times</title>
+        <title>{`Path Schedule - ${station.name}`}</title>
         <meta name="description" content="Get the latest PATH train times" />
         <meta
           name="viewport"

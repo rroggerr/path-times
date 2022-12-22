@@ -1,7 +1,9 @@
 {
   "name": "path-times",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "url": "https://www.pathschedule.live/",
+  "homepage": "https://github.com/rroggerr/path-times",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
