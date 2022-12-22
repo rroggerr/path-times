@@ -8,3 +8,12 @@
   width: 100%;
   color: white;
 }
+
+.navForm {
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  font-size: 18px;
+}

@@ -7,8 +7,8 @@ import { useConstantWakeLock, useGetTimes, useStation, useWindowWidth } from '..
 import { TopNav } from '../components/TopNav';
 
 export default function Home() {
-  const { station, isLocating } = useStation();
-  const { data, isLoading } = useGetTimes({
+  const { station, isLocating, setStation } = useStation();
+  const { data } = useGetTimes({
     station: station.station,
     dir: Direction.ALL,
   });
@@ -27,10 +27,13 @@ export default function Home() {
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <TopNav title={station.name} />
-        {isLoading && <p>Loading</p>}
-        {data && <Column trains={data} isNarrow={!!width && width < 600} />}
+      <main className={styles.main} suppressHydrationWarning>
+        <TopNav selectedStation={station} setStation={setStation} />
+        {data ? (
+          <Column trains={data} isNarrow={!!width && width < 600} />
+        ) : (
+          <p>Loading</p>
+        )}
         <InfoBox isLocating={isLocating} displayText={''} />
       </main>
     </>

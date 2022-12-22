@@ -25,5 +25,5 @@ export const useStation = () => {
     );
   };
 
-  return { station, relocate, isLocating };
+  return { station, relocate, isLocating, setStation };
 };
