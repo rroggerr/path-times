@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse<Train[] | string>
 ) {
   const { dir, station } = req.query;
-  let cacheHit = false;
+  let cacheHit = true;
 
   if (typeof station !== 'string' || !isValidStation(station)) {
     console.warn(`[Invalid Station]: ${station}`, { req });
@@ -20,8 +20,8 @@ export default async function handler(
   let cachedTrains: Schedule;
   try {
     cachedTrains = await readCache(station);
-    cacheHit = true;
   } catch {
+    cacheHit = false;
     const url = `https://path.api.razza.dev/v1/stations/${station}/realtime`;
     const resp = await fetch(url);
     const json: Schedule = await resp.json();

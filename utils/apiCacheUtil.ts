@@ -13,7 +13,6 @@ export const readCache = async (stationName: string): Promise<Schedule> => {
   const file = await readFile(`${CACHE_DIR}/${stationName}`);
   const dataWithTs: ScheduleWithTs = JSON.parse(file.toString());
 
-  console.log(Date.now() - dataWithTs.ts);
   const isStale = Date.now() - dataWithTs.ts > CACHE_TTL;
 
   if (isStale) {
