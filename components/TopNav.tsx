@@ -26,11 +26,7 @@ export const TopNav = ({ selectedStation, setStation }: Props) => {
           onChange={handleStationSelect}
         >
           {STATIONS.map((station) => (
-            <option
-              key={station.station}
-              value={station.station}
-              selected={station === selectedStation}
-            >
+            <option key={station.station} value={station.station}>
               {station.name}
             </option>
           ))}
