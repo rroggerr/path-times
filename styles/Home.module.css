@@ -20,10 +20,27 @@
   height: var(--circle-height);
   border-radius: 100%;
 }
+
+.narrowCircle {
+  width: var(--circle-height-narrow);
+  height: var(--circle-height-narrow);
+  border-radius: 100%;
+}
+
 .column {
   display: flex;
   flex-direction: column;
-  background-color: black;
+}
+
+.narrowRow {
+  display: grid;
+  grid-template-columns: var(--circle-height-narrow) 1fr 120px;
+  grid-column-gap: 16px;
+  width: 100%;
+  padding: 18px 18px;
+  justify-content: start;
+  align-items: center;
+  background-color: #FAFAFA;
 }
 
 .row {
@@ -37,7 +54,6 @@
   background-color: #FAFAFA;
 }
 
-
 @keyframes approaching {
   0% {
     background-color: #FAFAFA;
@@ -45,7 +61,7 @@
   }
   50% {
     background-color: #003DA0;
-    color: white;
+    color: rgb(251, 255, 0);
   }
   100% {
     background-color: #FAFAFA;
@@ -53,14 +69,7 @@
   }
 }
 
-.rowApproaching {
-  display: grid;
-  grid-template-columns: 80px 1fr 120px;
-  grid-column-gap: 36px;
-  width: 100%;
-  padding: 16px 24px;
-  justify-content: start;
-  align-items: center;
+.approaching {
   background-color: #FAFAFA;
   animation-name: approaching;
   animation-duration: 2.5s;
@@ -69,6 +78,10 @@
 
 .row:not(:last-child) {
   border-bottom: solid 2px lightgray;
+}
+
+.row:last-child {
+  margin-bottom: var(--infobox-height);
 }
 
 .lineText {

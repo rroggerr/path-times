@@ -3,15 +3,16 @@ import { Column } from '../components/Column';
 import { InfoBox } from '../components/InfoBox';
 import styles from '../styles/Home.module.css';
 import { Direction } from '../types/Train';
-import { useConstantWakeLock, useGetTimes, useStation } from '../hooks';
+import { useConstantWakeLock, useGetTimes, useStation, useWindowWidth } from '../hooks';
 
 export default function Home() {
   const { station, relocate, isLocating } = useStation();
   const { data, isLoading } = useGetTimes({
-    station,
+    station: station.station,
     dir: Direction.ALL,
   });
   useConstantWakeLock();
+  const width = useWindowWidth();
 
   return (
     <>
@@ -27,8 +28,8 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         {isLoading && <p>Loading</p>}
-        {data && <Column trains={data} />}
-        <InfoBox onClickLocate={relocate} isLocating={isLocating} />
+        {data && <Column trains={data} isNarrow={!!width && width < 600} />}
+        <InfoBox onClickLocate={relocate} isLocating={isLocating} displayText={''} />
       </main>
     </>
   );

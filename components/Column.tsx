@@ -1,9 +1,10 @@
 import { Train, Status } from '../types/Train';
-import { Row } from './row';
+import { Row } from './Row';
 import styles from '../styles/Home.module.css';
 
 interface Props {
   trains: Train[];
+  isNarrow: boolean;
 }
 
 const getRemainingTime = (train: Train) => {
@@ -19,7 +20,7 @@ const getRemainingTime = (train: Train) => {
   );
 };
 
-export const Column = ({ trains }: Props) => {
+export const Column = ({ trains, isNarrow }: Props) => {
   return (
     <div className={styles.column}>
       {trains.map((train) => {
@@ -32,6 +33,7 @@ export const Column = ({ trains }: Props) => {
             circles={train.lineColors}
             isApproaching={train.status === Status.ARRIVING_NOW}
             isDelay={train.status === Status.DELAY}
+            isNarrow={isNarrow}
           />
         );
       })}

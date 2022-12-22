@@ -1,10 +1,9 @@
 :root {
-  --max-width: 1100px;
-  --border-radius: 12px;
   --path-light-blue: #0094CE;
   --path-dark-blue: #0047BB;
   --infobox-height: 80px;
   --circle-height: 72px;
+  --circle-height-narrow: 56px;
 }
 
 * {

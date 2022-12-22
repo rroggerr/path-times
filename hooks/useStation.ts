@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getNearestStation } from '../components/getStation';
-import { Station } from '../types/Station';
+import { StationInfo } from '../types/Station';
+import { FALLBACK_STATION } from '../utils/StationInfo';
 
 export const useStation = () => {
   const [isLocating, setIsLocating] = useState(false);
-  const [station, setStation] = useState<Station>(Station.WORLD_TRADE_CENTER);
+  const [station, setStation] = useState<StationInfo>(FALLBACK_STATION);
 
   useEffect(() => {
     relocate();
@@ -14,9 +15,9 @@ export const useStation = () => {
     setIsLocating(true);
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
-        const { station } = getNearestStation(coords);
+        const nearest = getNearestStation(coords);
         setIsLocating(false);
-        setStation(station);
+        setStation(nearest);
       },
       () => {
         setIsLocating(false);
