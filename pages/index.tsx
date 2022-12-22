@@ -27,7 +27,7 @@ export default function Home() {
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main} suppressHydrationWarning>
+      <main className={styles.main}>
         <TopNav selectedStation={station} setStation={setStation} />
         {data ? (
           <Column trains={data} isNarrow={!!width && width < 600} />

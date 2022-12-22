@@ -30,8 +30,7 @@ export const Row = ({
     <div
       className={`${isApproaching ? styles.approaching : ''} ${
         isNarrow ? styles.narrowRow : ''
-      } ${styles.row}
-      }`}
+      } ${styles.row}`}
       onClick={onClick}
     >
       <div

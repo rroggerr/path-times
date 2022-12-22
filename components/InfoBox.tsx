@@ -17,7 +17,9 @@ export const InfoBox = ({ isLocating, displayText }: Props) => {
   return (
     <div className={styles.infoBox}>
       <div className={styles.timeArrow}>
-        <p className={styles.timeStr}>{timeStr}</p>
+        <p className={styles.timeStr} suppressHydrationWarning>
+          {timeStr}
+        </p>
       </div>
       <p>{displayText}</p>
       {isLocating && (
