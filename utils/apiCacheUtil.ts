@@ -8,21 +8,24 @@ type DataWithTs<T> = {
   ts: number;
 };
 
-export const readCache = async <T>(stationName: string): Promise<T> => {
-  const file = await readFile(`${CACHE_DIR}/${stationName}`);
+export const readCache = async <T>(
+  cacheKey: string,
+  ttl = CACHE_TTL
+): Promise<T> => {
+  const file = await readFile(`${CACHE_DIR}/${cacheKey}`);
   const dataWithTs: DataWithTs<T> = JSON.parse(file.toString());
 
-  const isStale = Date.now() - dataWithTs.ts > CACHE_TTL;
+  const isStale = Date.now() - dataWithTs.ts > ttl;
 
   if (isStale) {
-    console.log(`[Train Cache]: Stale cache for ${stationName}`);
+    console.log(`[Train Cache]: Stale cache for ${cacheKey}`);
     throw new Error('Cache stale');
   }
-  console.log(`[Train Cache]: Read cache for ${stationName}`);
+  console.log(`[Train Cache]: Read cache for ${cacheKey}`);
   return dataWithTs.data;
 };
 
-export const writeCache = async <T>(stationName: string, data: T) => {
+export const writeCache = async <T>(cacheKey: string, data: T) => {
   try {
     await access(CACHE_DIR);
   } catch {
@@ -32,9 +35,9 @@ export const writeCache = async <T>(stationName: string, data: T) => {
   const dataWithTs: DataWithTs<T> = { data, ts: Date.now() };
 
   const res = await writeFile(
-    `${CACHE_DIR}/${stationName}`,
+    `${CACHE_DIR}/${cacheKey}`,
     JSON.stringify(dataWithTs)
   );
-  console.log(`[Train Cache]: Wrote cache for ${stationName}`);
+  console.log(`[Train Cache]: Wrote cache for ${cacheKey}`);
   return res;
 };
