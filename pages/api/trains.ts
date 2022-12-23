@@ -26,7 +26,7 @@ export default async function handler(
     const resp = await fetch(url);
     const json: Schedule = await resp.json();
     cachedTrains = json;
-    await writeCache(station, json);
+    writeCache(station, json);
   }
 
   const trains = cachedTrains?.upcomingTrains ?? [];

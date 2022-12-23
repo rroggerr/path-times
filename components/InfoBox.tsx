@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useClock } from '../hooks/useClock';
 import styles from '../styles/Home.module.css';
 
 type Props = {
@@ -7,13 +8,8 @@ type Props = {
 };
 
 export const InfoBox = ({ isLocating, displayText }: Props) => {
-  const time = new Date();
-  const timeStr = time
-    .toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-    .toLocaleLowerCase();
+  const timeStr = useClock();
+
   return (
     <div className={styles.infoBox}>
       <div className={styles.timeArrow}>

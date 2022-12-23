@@ -1,17 +1,16 @@
 import { access, readFile, mkdir, writeFile } from 'fs/promises';
-import { Schedule } from '../types/Api';
 
 const CACHE_TTL = 15 * 1000; // 15 second TTL
 const CACHE_DIR = '/tmp/stations';
 
-type ScheduleWithTs = {
-  data: Schedule;
+type DataWithTs<T> = {
+  data: T;
   ts: number;
 };
 
-export const readCache = async (stationName: string): Promise<Schedule> => {
+export const readCache = async <T>(stationName: string): Promise<T> => {
   const file = await readFile(`${CACHE_DIR}/${stationName}`);
-  const dataWithTs: ScheduleWithTs = JSON.parse(file.toString());
+  const dataWithTs: DataWithTs<T> = JSON.parse(file.toString());
 
   const isStale = Date.now() - dataWithTs.ts > CACHE_TTL;
 
@@ -23,14 +22,14 @@ export const readCache = async (stationName: string): Promise<Schedule> => {
   return dataWithTs.data;
 };
 
-export const writeCache = async (stationName: string, data: Schedule) => {
+export const writeCache = async <T>(stationName: string, data: T) => {
   try {
     await access(CACHE_DIR);
   } catch {
     await mkdir(CACHE_DIR, { recursive: true });
   }
 
-  const dataWithTs: ScheduleWithTs = { data, ts: Date.now() };
+  const dataWithTs: DataWithTs<T> = { data, ts: Date.now() };
 
   const res = await writeFile(
     `${CACHE_DIR}/${stationName}`,
