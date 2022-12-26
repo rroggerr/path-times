@@ -23,14 +23,17 @@
 .infoBox{
   position: fixed;
   bottom: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 200px 1fr 50px;
   padding: 0 12px 0 0;
-  justify-content: space-between;
-  justify-self: flex-end;
   align-items: center;
   width: 100%;
   height: var(--infobox-height);
   background-color: var(--path-dark-blue);
+}
+
+.narrowInfoBox {
+  grid-template-columns: 175px 1fr 40px;
 }
 
 .timeArrow {
@@ -82,4 +85,11 @@
   animation-name: flashing;
   animation-duration: 2s;
   animation-iteration-count: infinite;
+}
+
+.marqueeText {
+  color: white;
+  padding: 0 8px;
+  font-weight: 500;
+  font-size: 22px;
 }

@@ -5,6 +5,7 @@ import { InfoBox } from '../components/InfoBox';
 import styles from '../styles/Home.module.css';
 import { Direction } from '../types/Train';
 import {
+  useAlerts,
   useConstantWakeLock,
   useGetTimes,
   useStation,
@@ -20,6 +21,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 
 export default function Home({ prevStation }: { prevStation: string }) {
   const { station, isLocating, setStation } = useStation(prevStation);
+  const alertData = useAlerts();
   const { data } = useGetTimes({
     station: station.station,
     dir: Direction.ALL,
@@ -36,7 +38,11 @@ export default function Home({ prevStation }: { prevStation: string }) {
       <main className={styles.main}>
         <TopNav selectedStation={station} setStation={setStation} />
         {data ? <Column trains={data} isNarrow={isNarrow} /> : <p>Loading</p>}
-        <InfoBox isLocating={isLocating} displayText={''} />
+        <InfoBox
+          isLocating={isLocating}
+          displayText={alertData}
+          isNarrow={isNarrow}
+        />
       </main>
     </>
   );
