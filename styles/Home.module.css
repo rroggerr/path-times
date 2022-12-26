@@ -33,6 +33,10 @@
 }
 
 .narrowInfoBox {
+  grid-template-columns: 175px 1fr 2px;
+}
+
+.narrowInfoBoxLocating {
   grid-template-columns: 175px 1fr 40px;
 }
 

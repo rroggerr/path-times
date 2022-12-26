@@ -14,7 +14,13 @@ export const InfoBox = ({ isNarrow, isLocating, displayText }: Props) => {
 
   return (
     <div
-      className={`${styles.infoBox} ${isNarrow ? styles.narrowInfoBox : ''}`}
+      className={`${styles.infoBox} ${
+        isNarrow
+          ? isLocating
+            ? styles.narrowInfoBoxLocating
+            : styles.narrowInfoBox
+          : ''
+      }`}
     >
       <div className={styles.timeArrow}>
         <p className={styles.timeStr} suppressHydrationWarning>
