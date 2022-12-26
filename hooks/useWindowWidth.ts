@@ -12,5 +12,7 @@ export const useWindowWidth = () => {
 
       return () => window.removeEventListener('resize', handleResize);
     }, []);
-    return windowWidth;
+
+    const isNarrow = !!windowWidth && windowWidth < 600;
+    return { windowWidth, isNarrow };
   }
