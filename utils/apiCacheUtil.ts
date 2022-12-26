@@ -12,8 +12,14 @@ export const readCache = async <T>(
   cacheKey: string,
   ttl = CACHE_TTL
 ): Promise<T> => {
-  const file = await readFile(`${CACHE_DIR}/${cacheKey}`);
-  const dataWithTs: DataWithTs<T> = JSON.parse(file.toString());
+  let dataWithTs: DataWithTs<T>;
+  try {
+    const file = await readFile(`${CACHE_DIR}/${cacheKey}`);
+    dataWithTs = JSON.parse(file.toString());
+  } catch (err) {
+    console.error(err);
+    throw new Error('No Cache Found');
+  }
 
   const isStale = Date.now() - dataWithTs.ts > ttl;
 

@@ -6,11 +6,15 @@ const FALLBACK_TEXT =
 const DIVIDER = '---';
 
 export const useAlerts = (): string => {
-  const { data, isLoading } = useSWR<string>(
+  const { data, isLoading, error } = useSWR<string>(
     '/api/inbound-alerts',
     (url: string) => fetch(url).then((resp) => resp.json()),
-    { refreshInterval: 10000 }
+    { refreshInterval: 60000 }
   );
+
+  if (error) {
+    return FALLBACK_TEXT;
+  }
 
   if (!data && !isLoading) {
     return FALLBACK_TEXT;
