@@ -3,6 +3,11 @@ import { readCache, writeCache } from '../../utils/apiCacheUtil';
 
 const ALERT_KEY = 'alerts';
 const ONE_HOUR_TTL = 3600000;
+const WHITELIST_EMAIL = [
+  'rogers5thadress@gmail.com',
+  'example.sender@mandrillapp.com',
+  'noreply@everbridge.net',
+];
 
 const processEmail = (body: any): string => {
   const parsedEvents = JSON.parse(body.mandrill_events);
