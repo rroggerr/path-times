@@ -12,6 +12,7 @@ const WHITELIST_EMAIL = [
 const processEmail = (body: any): string => {
   const parsedEvents = JSON.parse(body.mandrill_events);
   const resp = parsedEvents[0].msg.text;
+  console.log(resp);
   return resp;
 };
 
@@ -20,11 +21,16 @@ export default async function handler(
   res: NextApiResponse<string>
 ) {
   if (req.method === 'POST') {
-    const text = processEmail(req.body).replace('\n', ' ');
+    const text = processEmail(req.body);
     await writeCache(ALERT_KEY, text);
     res.status(200).send('Message recieved');
   } else if (req.method === 'GET') {
-    const data = await readCache<Object>(ALERT_KEY, ONE_HOUR_TTL);
-    res.status(200).send(JSON.stringify(data));
+    try {
+      const data = await readCache<string>(ALERT_KEY, ONE_HOUR_TTL);
+      res.status(200).send(data);
+    } catch (err) {
+      console.error(err);
+      res.status(200).send('');
+    }
   } else res.status(200).send('Fallthru');
 }
