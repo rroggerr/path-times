@@ -2,7 +2,6 @@ import useSWR from 'swr';
 
 const FALLBACK_TEXT =
   'No food or beverages of any kind, in any type of container, open or closed, will be permitted on board trains during this time.';
-const DIVIDER = '---';
 
 export const useAlerts = (): string => {
   const { data, isLoading, error } = useSWR<string>(
@@ -19,5 +18,5 @@ export const useAlerts = (): string => {
     return FALLBACK_TEXT;
   }
 
-  return data?.split?.(DIVIDER)[0] ?? '';
+  return data ?? '';
 };
