@@ -17,13 +17,16 @@ export const InfoBox = ({ isNarrow, isLocating, displayText }: Props) => {
       className={`${styles.infoBox} ${
         isNarrow
           ? isLocating
-            ? styles.narrowInfoBoxLocating
-            : styles.narrowInfoBox
+            ? styles.infoBoxNarrowLocating
+            : styles.infoBoxNarrow
           : ''
       }`}
     >
-      <div className={styles.timeArrow}>
-        <p className={styles.timeStr} suppressHydrationWarning>
+      <div className={isNarrow ? styles.timeArrowNarrow : styles.timeArrow}>
+        <p
+          className={isNarrow ? styles.timeStrNarrow : styles.timeStr}
+          suppressHydrationWarning
+        >
           {timeStr}
         </p>
       </div>
@@ -34,8 +37,8 @@ export const InfoBox = ({ isNarrow, isLocating, displayText }: Props) => {
         <Image
           className={styles.flashing}
           src="/location-pin.svg"
-          width={42}
-          height={42}
+          width={isNarrow ? 28 : 42}
+          height={isNarrow ? 28 : 42}
           alt="Locating"
         />
       )}

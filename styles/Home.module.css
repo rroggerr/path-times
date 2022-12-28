@@ -32,12 +32,15 @@
   background-color: var(--path-dark-blue);
 }
 
-.narrowInfoBox {
-  grid-template-columns: 175px 1fr 2px;
+.infoBoxNarrow {
+  height: var(--infobox-height-narrow);
+  grid-template-columns: 140px 1fr 0;
 }
 
-.narrowInfoBoxLocating {
-  grid-template-columns: 175px 1fr 40px;
+.infoBoxNarrowLocating {
+  padding: 0;
+  height: var(--infobox-height-narrow);
+  grid-template-columns: 140px 1fr 28px;
 }
 
 .timeArrow {
@@ -46,6 +49,16 @@
   align-items: center;
   justify-content: center;
   width: 140px;
+  height: 100%;
+  background-color: var(--path-light-blue);
+}
+
+.timeArrowNarrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
   height: 100%;
   background-color: var(--path-light-blue);
 }
@@ -60,10 +73,26 @@
   border-bottom: calc(var(--infobox-height) / 2) solid transparent;
 }
 
+.timeArrowNarrow:after {
+  content: " ";
+  position: absolute;
+  right: calc(calc(var(--infobox-height-narrow) / 2) * -1);
+  border-top: calc(var(--infobox-height-narrow) / 2) solid transparent;
+  border-right: none;
+  border-left: calc(var(--infobox-height-narrow) / 2) solid var(--path-light-blue);
+  border-bottom: calc(var(--infobox-height-narrow) / 2) solid transparent;
+}
+
 .timeStr {
   color: white;
   font-weight: 550;
   font-size: 28px;
+}
+
+.timeStrNarrow {
+  color: white;
+  font-weight: 550;
+  font-size: 24px;
 }
 
 .locateBtn {

@@ -10,7 +10,7 @@ export const useClock = () => {
     return () => {
       clearInterval(timer);
     };
-  });
+  }, []);
 
   return date
     .toLocaleTimeString([], {
