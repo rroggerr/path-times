@@ -5,7 +5,7 @@ const FALLBACK_TEXT =
 
 export const useAlerts = (): string => {
   const { data, isLoading, error } = useSWR<string>(
-    '/api/alerts/',
+    '/api/alerts',
     (url: string) => fetch(url).then((resp) => resp.text()),
     { refreshInterval: 60000 }
   );
