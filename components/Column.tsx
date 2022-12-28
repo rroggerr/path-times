@@ -40,7 +40,7 @@ export const Column = ({ trains, isNarrow }: Props) => {
         const arrMins = getRemainingTime(train);
         return (
           <Row
-            key={`${train.lineName}-${train.status}-${arrMins}`}
+            key={`${train.lineName}-${train.status}-${arrMins}-${isNarrow}`}
             lineName={train.lineName}
             arrMins={arrMins}
             circles={train.lineColors}

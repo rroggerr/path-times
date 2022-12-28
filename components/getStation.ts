@@ -7,8 +7,11 @@ export const getNearestStation = (coords: Coordinates): StationInfo => {
     dist: _getEuclid(coords, station.coordinates),
   }));
 
-  withDist.sort((a, b) => a.dist - b.dist);
-  return withDist[0].station;
+  const minDist = withDist.reduce(
+    (acc, curr) => (curr.dist < acc.dist ? curr : acc),
+    withDist[0]
+  );
+  return minDist.station;
 };
 
 const _getEuclid = (coordA: Coordinates, coordB: Coordinates) => {
