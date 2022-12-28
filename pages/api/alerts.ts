@@ -15,7 +15,7 @@ const fetchTwitter = async (): Promise<string> => {
   ).text();
   const parsed = parse(html);
   const firstTweet = parsed.querySelectorAll('[data-testid="tweetText"]')[0];
-  const tweetText = firstTweet.firstChild.innerText;
+  const tweetText = firstTweet.firstChild.textContent;
   return tweetText;
 };
 
