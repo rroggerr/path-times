@@ -1,7 +1,8 @@
 import { useAlerts } from './useAlerts';
 import { useConstantWakeLock } from './useConstantWakeLock';
 import { useGetTimes } from './useGetTimes';
-import { useStation } from './useStation';
+import { useStation, getPrevStation } from './useStation';
+import { useServiceWorker } from './useServiceWorker';
 import { useWindowWidth } from './useWindowWidth';
 
 export {
@@ -10,4 +11,6 @@ export {
   useGetTimes,
   useStation,
   useWindowWidth,
+  getPrevStation,
+  useServiceWorker,
 };

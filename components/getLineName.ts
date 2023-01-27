@@ -6,6 +6,7 @@ const LINE_MAP: Record<string, string> = {
   Newark: 'NWK',
   Hoboken: 'HOB',
   'World Trade Center': 'WTC',
+  Offline: 'OFFLINE',
 };
 
 export const getShortLineName = (lineName: string): string => {

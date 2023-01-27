@@ -9,6 +9,7 @@ export const Metadata = () => {
       <link rel="manifest" href="/manifest.json" />
       <link rel="icon" href="/favicon.ico" />
       <link rel="apple-touch-icon" href="/icon.png" />
+      <meta name="theme-color" content="black" />
       <meta property="og:title" content="PATH Live Schedule" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.pathschedule.live" />

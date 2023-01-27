@@ -13,7 +13,7 @@ import {
 } from '../hooks';
 import { TopNav } from '../components/TopNav';
 import { Metadata } from '../components/Metadata';
-import { getPrevStation } from '../hooks/useStation';
+import { getPrevStation, useServiceWorker } from '../hooks';
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { prevStation: getPrevStation(context) ?? '' },
@@ -27,6 +27,7 @@ export default function Home({ prevStation }: { prevStation: string }) {
     dir: Direction.ALL,
   });
   useConstantWakeLock();
+  useServiceWorker();
   const { isNarrow } = useWindowWidth();
 
   return (
