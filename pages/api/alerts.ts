@@ -9,10 +9,11 @@ const fetchTwitter = async (): Promise<string> => {
   const html = await (
     await fetch('https://www.twitter.com/PATHAlerts', {
       headers: {
-        'User-Agent': 'bing' + 'bot',
+        'User-Agent': 'Google' + 'bot',
       },
     })
   ).text();
+  return html;
   const parsed = parse(html);
   const firstTweet = parsed.querySelectorAll('[data-testid="tweetText"]')[0];
   const tweetText = firstTweet.firstChild.textContent;
@@ -24,13 +25,13 @@ export default async function handler(
   res: NextApiResponse<string>
 ) {
   if (req.method === 'GET') {
-    try {
-      const data = await readCache<string>(ALERT_KEY, ONE_HOUR_TTL);
-      res.status(200).send(data);
-    } catch (err) {
-      const fetchedData = await fetchTwitter();
-      writeCache(ALERT_KEY, fetchedData);
-      res.status(200).send(fetchedData);
-    }
+    // try {
+    // const data = await readCache<string>(ALERT_KEY, ONE_HOUR_TTL);
+    // res.status(200).send(data);
+    // } catch (err) {
+    const fetchedData = await fetchTwitter();
+    //   writeCache(ALERT_KEY, fetchedData);
+    res.status(200).send(fetchedData);
+    // }
   } else res.status(200).send('Fallthru');
 }
