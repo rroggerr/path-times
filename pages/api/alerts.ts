@@ -29,9 +29,9 @@ export default async function handler(
     // const data = await readCache<string>(ALERT_KEY, ONE_HOUR_TTL);
     // res.status(200).send(data);
     // } catch (err) {
-    const fetchedData = await fetchTwitter();
+    // const fetchedData = await fetchTwitter();
     //   writeCache(ALERT_KEY, fetchedData);
-    res.status(200).send(fetchedData);
+    res.status(200).send('');
     // }
   } else res.status(200).send('Fallthru');
 }
