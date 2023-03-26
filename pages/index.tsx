@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 
 export default function Home({ prevStation }: { prevStation: string }) {
   const { station, isLocating, setStation } = useStation(prevStation);
-  const alertData = useAlerts();
+  useAlerts();
   const { data } = useGetTimes({
     station: station.station,
     dir: Direction.ALL,
@@ -39,11 +39,7 @@ export default function Home({ prevStation }: { prevStation: string }) {
       <main className={styles.main}>
         <TopNav selectedStation={station} setStation={setStation} />
         {data ? <Column trains={data} isNarrow={isNarrow} /> : <p>Loading</p>}
-        <InfoBox
-          isLocating={isLocating}
-          displayText={alertData}
-          isNarrow={isNarrow}
-        />
+        <InfoBox isLocating={isLocating} displayText={''} isNarrow={isNarrow} />
       </main>
     </>
   );

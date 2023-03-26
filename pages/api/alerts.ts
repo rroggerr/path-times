@@ -1,23 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { parse } from 'node-html-parser';
+import { Alert } from '../../types/Alert';
 import { readCache, writeCache } from '../../utils/apiCacheUtil';
 
 const ALERT_KEY = 'alerts';
 const ONE_HOUR_TTL = 3600000;
 
-const fetchTwitter = async (): Promise<string> => {
-  const html = await (
-    await fetch('https://www.twitter.com/PATHAlerts', {
-      headers: {
-        'User-Agent': 'Google' + 'bot',
-      },
-    })
-  ).text();
-  return html;
-  const parsed = parse(html);
-  const firstTweet = parsed.querySelectorAll('[data-testid="tweetText"]')[0];
-  const tweetText = firstTweet.firstChild.textContent;
-  return tweetText;
+const fetchAlerts = async (): Promise<Alert[]> => {
+  const res = await(
+    await fetch(
+      'https://www.panynj.gov/bin/portauthority/everbridge/incidents?status=All&department=Path',
+      {
+        headers: {
+          accept: 'application/json',
+          'cache-control': 'no-cache',
+          pragma: 'no-cache',
+          'sec-ch-ua':
+            '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+        },
+        referrer: 'https://www.panynj.gov/path/en/alerts.html',
+        referrerPolicy: 'strict-origin-when-cross-origin',
+        method: 'GET',
+        mode: 'cors',
+      }
+    )
+  ).json();
+  return res?.data ?? [];
 };
 
 export default async function handler(
@@ -25,13 +32,15 @@ export default async function handler(
   res: NextApiResponse<string>
 ) {
   if (req.method === 'GET') {
-    // try {
-    // const data = await readCache<string>(ALERT_KEY, ONE_HOUR_TTL);
-    // res.status(200).send(data);
-    // } catch (err) {
-    // const fetchedData = await fetchTwitter();
-    //   writeCache(ALERT_KEY, fetchedData);
-    res.status(200).send('');
-    // }
+    let fetchedData = JSON.stringify([]);
+    try {
+      const data = await readCache<string>(ALERT_KEY, ONE_HOUR_TTL);
+      fetchedData = data;
+    } catch (err) {
+      const alertsJson = await fetchAlerts();
+      writeCache(ALERT_KEY, alertsJson);
+      fetchedData = JSON.stringify(alertsJson);
+    }
+    res.status(200).json(fetchedData);
   } else res.status(200).send('Fallthru');
 }
