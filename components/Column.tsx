@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css';
 interface Props {
   trains: Train[];
   isNarrow: boolean;
+  affectedLines: string[];
 }
 
 const getRemainingTime = (train: Train) => {
@@ -29,7 +30,7 @@ const getAbsTime = (train: Train) => {
   });
 };
 
-export const Column = ({ trains, isNarrow }: Props) => {
+export const Column = ({ affectedLines, trains, isNarrow }: Props) => {
   const [showAbsTime, setShowAbsTime] = useState(false);
   const toggleAbsTime = () => {
     setShowAbsTime((show) => !show);
@@ -38,10 +39,12 @@ export const Column = ({ trains, isNarrow }: Props) => {
     <div className={styles.column}>
       {trains.map((train) => {
         const arrMins = getRemainingTime(train);
+        const hasAlert = affectedLines.includes(train.route);
         return (
           <Row
             key={`${train.lineName}-${train.status}-${arrMins}-${isNarrow}`}
             lineName={train.lineName}
+            hasAlert={hasAlert}
             arrMins={arrMins}
             circles={train.lineColors}
             isApproaching={train.status === Status.ARRIVING_NOW}
@@ -49,7 +52,8 @@ export const Column = ({ trains, isNarrow }: Props) => {
             isNarrow={isNarrow}
             showAbsTime={showAbsTime}
             absTime={getAbsTime(train)}
-            onClick={toggleAbsTime}
+            onAlertClick={() => {}}
+            onTimeClick={toggleAbsTime}
           />
         );
       })}

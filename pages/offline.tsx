@@ -36,7 +36,13 @@ export default function Offline({ prevStation }: { prevStation: string }) {
           setStation={setStation}
           isNarrow={isNarrow}
         />
-        {<Column trains={[OFFLINE_DATA]} isNarrow={isNarrow} />}
+        {
+          <Column
+            trains={[OFFLINE_DATA]}
+            isNarrow={isNarrow}
+            affectedLines={[]}
+          />
+        }
       </main>
     </>
   );

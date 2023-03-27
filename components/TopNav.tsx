@@ -31,12 +31,7 @@ export const TopNav = ({
   return (
     <div className={styles.nav}>
       <div className={isNarrow ? styles.timeArrowNarrow : styles.timeArrow}>
-        <p
-          className={isNarrow ? styles.timeStrNarrow : styles.timeStr}
-          suppressHydrationWarning
-        >
-          {timeStr}
-        </p>
+        <p suppressHydrationWarning>{timeStr}</p>
       </div>
       <form className={styles.dropdown} onSubmit={(e) => e.preventDefault()}>
         <select

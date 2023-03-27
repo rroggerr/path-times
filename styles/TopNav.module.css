@@ -10,11 +10,6 @@
   color: white;
 }
 
-.timeStr {
-  color: white;
-  font-size: 24px;
-}
-
 .dropdown {
   display: flex;
   justify-content: center;

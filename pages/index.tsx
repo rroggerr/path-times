@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 
 export default function Home({ prevStation }: { prevStation: string }) {
   const { station, isLocating, setStation } = useStation(prevStation);
-  useAlerts();
+  const { affectedLines } = useAlerts();
   const { data } = useGetTimes({
     station: station.station,
     dir: Direction.ALL,
@@ -42,7 +42,15 @@ export default function Home({ prevStation }: { prevStation: string }) {
           isLocating={isLocating}
           isNarrow={isNarrow}
         />
-        {data ? <Column trains={data} isNarrow={isNarrow} /> : <p>Loading</p>}
+        {data ? (
+          <Column
+            trains={data}
+            isNarrow={isNarrow}
+            affectedLines={affectedLines}
+          />
+        ) : (
+          <p>Loading</p>
+        )}
       </main>
     </>
   );

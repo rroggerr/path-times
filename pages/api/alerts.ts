@@ -29,18 +29,19 @@ const fetchAlerts = async (): Promise<Alert[]> => {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<string>
+  res: NextApiResponse<Alert[]>
 ) {
   if (req.method === 'GET') {
-    let fetchedData = JSON.stringify([]);
+    let fetchedData = [];
     try {
-      const data = await readCache<string>(ALERT_KEY, ONE_HOUR_TTL);
+      const data = await readCache<Alert[]>(ALERT_KEY, ONE_HOUR_TTL);
       fetchedData = data;
     } catch (err) {
+      console.log(err);
       const alertsJson = await fetchAlerts();
       writeCache(ALERT_KEY, alertsJson);
-      fetchedData = JSON.stringify(alertsJson);
+      fetchedData = alertsJson;
     }
     res.status(200).json(fetchedData);
-  } else res.status(200).send('Fallthru');
+  } else res.status(200).send([]);
 }

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from '../styles/Row.module.css';
 
 interface RowProps {
@@ -9,10 +10,13 @@ interface RowProps {
   isNarrow: boolean;
   showAbsTime: boolean;
   absTime: string;
-  onClick: () => void;
+  onTimeClick: () => void;
+  hasAlert?: boolean;
+  onAlertClick: () => void;
 }
 
 export const Row = ({
+  hasAlert,
   circles,
   lineName,
   arrMins,
@@ -21,15 +25,22 @@ export const Row = ({
   isNarrow,
   showAbsTime,
   absTime,
-  onClick,
+  onTimeClick,
+  onAlertClick,
 }: RowProps) => {
   const circleOffset = isNarrow ? '-10px' : '-12px';
+
+  const handleAlertClick = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
+    onAlertClick();
+  };
+
   return (
     <div
       className={`${isApproaching ? styles.approaching : ''} ${
         isNarrow ? styles.narrowRow : ''
       } ${styles.row}`}
-      onClick={onClick}
+      onClick={onTimeClick}
     >
       <div
         className={isNarrow ? styles.narrowCircle : styles.circle}
@@ -43,6 +54,13 @@ export const Row = ({
       <p className={isNarrow ? styles.narrowLineText : styles.lineText}>
         {lineName}
       </p>
+      {hasAlert ? (
+        <button className={styles.alertButton} onClick={handleAlertClick}>
+          <Image src="/alert.svg" width={28} height={28} alt="alert" />
+        </button>
+      ) : (
+        <p>&nbsp;</p>
+      )}
       <>
         {isDelay && (
           <p className={`${styles.timeText} ${styles.delayText}`}>Delay</p>

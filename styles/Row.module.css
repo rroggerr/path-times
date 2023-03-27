@@ -12,7 +12,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: var(--circle-height) 1fr 120px;
+  grid-template-columns: var(--circle-height) 1fr 32px 120px;
   grid-column-gap: 36px;
   width: 100%;
   padding: 12px 24px;
@@ -23,7 +23,7 @@
 
 .narrowRow {
   width: 100%;
-  grid-template-columns: var(--circle-height-narrow) 1fr 100px;
+  grid-template-columns: var(--circle-height-narrow) 1fr 32px 100px;
   grid-column-gap: 16px;
   padding: 18px 18px;
 }
@@ -94,4 +94,11 @@
 
 .narrowLineText {
   font-size: 22px;
+}
+
+.alertButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 100%;
 }
