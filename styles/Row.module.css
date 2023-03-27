@@ -12,7 +12,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: var(--circle-height) 1fr 32px 120px;
+  grid-template-columns: var(--circle-height) 1fr 32px 60px;
   grid-column-gap: 36px;
   width: 100%;
   padding: 12px 24px;
@@ -23,7 +23,7 @@
 
 .narrowRow {
   width: 100%;
-  grid-template-columns: var(--circle-height-narrow) 1fr 32px 100px;
+  grid-template-columns: var(--circle-height-narrow) 1fr 32px 46px;
   grid-column-gap: 16px;
   padding: 18px 18px;
 }
@@ -63,7 +63,7 @@
   align-items: center;
   justify-content: flex-start;
   font-weight: 500;
-  font-size: 42px;
+  font-size: 22px;
 }
 
 .minText {
@@ -71,7 +71,7 @@
   align-items: center;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 32px;
+  font-size: 18px;
 }
 
 .timeBox {
@@ -80,12 +80,18 @@
   justify-content: flex-end;
 }
 
+.timeVerticalWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .lineText {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 38px;
+  font-size: 32px;
 }
 
 .narrowLineText {

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import styles from '../styles/Row.module.css';
-import { getLineName } from '../utils/getLineName';
 
 interface RowProps {
   circles: string[];
@@ -53,7 +52,7 @@ export const Row = ({
         }}
       />
       <p className={isNarrow ? styles.narrowLineText : styles.lineText}>
-        {getLineName(lineName, isNarrow)}
+        {lineName}
       </p>
       {hasAlert ? (
         <button className={styles.alertButton} onClick={handleAlertClick}>
@@ -63,18 +62,17 @@ export const Row = ({
         <p>&nbsp;</p>
       )}
       <>
-        {isDelay && (
-          <p className={`${styles.timeText} ${styles.delayText}`}>Delay</p>
-        )}
-        {!isDelay && (
-          <div className={`${styles.timeBox} ${styles.fadeInOut}`}>
+        {isDelay ? (
+          <p className={`${styles.timeText}`}>Delay</p>
+        ) : (
+          <div className={`${styles.timeBox}`}>
             {showAbsTime ? (
               <p className={styles.timeText}>{absTime}</p>
             ) : (
-              <>
-                <p className={styles.timeText}>{arrMins}</p>&nbsp;&nbsp;
+              <div className={styles.timeVerticalWrapper}>
+                <p className={styles.timeText}>{arrMins}</p>
                 <p className={styles.minText}>min</p>
-              </>
+              </div>
             )}
           </div>
         )}

@@ -23,11 +23,13 @@ const getRemainingTime = (train: Train) => {
 };
 
 const getAbsTime = (train: Train) => {
-  return new Date(train.projectedArrival).toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  });
+  return new Date(train.projectedArrival)
+    .toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    })
+    .split(' ')[0];
 };
 
 export const Column = ({ affectedLines, trains, isNarrow }: Props) => {
