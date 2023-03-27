@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from '../styles/Row.module.css';
+import { getLineName } from '../utils/getLineName';
 
 interface RowProps {
   circles: string[];
@@ -52,7 +53,7 @@ export const Row = ({
         }}
       />
       <p className={isNarrow ? styles.narrowLineText : styles.lineText}>
-        {lineName}
+        {getLineName(lineName, isNarrow)}
       </p>
       {hasAlert ? (
         <button className={styles.alertButton} onClick={handleAlertClick}>

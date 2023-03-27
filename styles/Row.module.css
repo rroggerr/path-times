@@ -58,10 +58,6 @@
   border-bottom: solid 2px lightgray;
 }
 
-.row:last-child {
-  margin-bottom: var(--infobox-height);
-}
-
 .timeText {
   display: flex;
   align-items: center;
@@ -100,5 +96,5 @@
   background: none;
   border: none;
   cursor: pointer;
-  height: 100%;
+  height: var(--circle-height-narrow);
 }

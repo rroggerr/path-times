@@ -37,7 +37,6 @@ export default async function handler(
       const data = await readCache<Alert[]>(ALERT_KEY, ONE_HOUR_TTL);
       fetchedData = data;
     } catch (err) {
-      console.log(err);
       const alertsJson = await fetchAlerts();
       writeCache(ALERT_KEY, alertsJson);
       fetchedData = alertsJson;
