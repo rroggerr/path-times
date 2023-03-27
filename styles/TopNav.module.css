@@ -1,12 +1,23 @@
 .nav {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 100px auto 50px;
+  padding: 0 8px 0 16px;
   align-items: center;
   position: fixed;
   height: var(--topnav-height);
   background-color: black;
   width: 100%;
   color: white;
+}
+
+.timeStr {
+  color: white;
+  font-size: 24px;
+}
+
+.dropdown {
+  display: flex;
+  justify-content: center;
 }
 
 .navForm {
@@ -19,3 +30,22 @@
 }
 
 .navForm:focus { outline: none; }
+
+@keyframes flashing {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flashing {
+  opacity: 1;
+  animation-name: flashing;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}

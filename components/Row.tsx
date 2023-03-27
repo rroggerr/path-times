@@ -1,5 +1,4 @@
 import styles from '../styles/Row.module.css';
-import { getShortLineName } from './getLineName';
 
 interface RowProps {
   circles: string[];
@@ -24,7 +23,6 @@ export const Row = ({
   absTime,
   onClick,
 }: RowProps) => {
-  const displayLineName = isNarrow ? getShortLineName(lineName) : lineName;
   const circleOffset = isNarrow ? '-10px' : '-12px';
   return (
     <div
@@ -41,8 +39,10 @@ export const Row = ({
             ? `${circleOffset} ${circleOffset} 0 -2px ${circles[1]}`
             : 'none',
         }}
-      ></div>
-      <p className={styles.lineText}>{displayLineName}</p>
+      />
+      <p className={isNarrow ? styles.narrowLineText : styles.lineText}>
+        {lineName}
+      </p>
       <>
         {isDelay && (
           <p className={`${styles.timeText} ${styles.delayText}`}>Delay</p>

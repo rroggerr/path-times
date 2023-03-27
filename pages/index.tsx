@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { Column } from '../components/Column';
-import { InfoBox } from '../components/InfoBox';
 import styles from '../styles/Home.module.css';
 import { Direction } from '../types/Train';
 import {
@@ -37,9 +36,13 @@ export default function Home({ prevStation }: { prevStation: string }) {
         <Metadata />
       </Head>
       <main className={styles.main}>
-        <TopNav selectedStation={station} setStation={setStation} />
+        <TopNav
+          selectedStation={station}
+          setStation={setStation}
+          isLocating={isLocating}
+          isNarrow={isNarrow}
+        />
         {data ? <Column trains={data} isNarrow={isNarrow} /> : <p>Loading</p>}
-        <InfoBox isLocating={isLocating} displayText={''} isNarrow={isNarrow} />
       </main>
     </>
   );

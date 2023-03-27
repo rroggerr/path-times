@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css';
 import { TopNav } from '../components/TopNav';
 import { Metadata } from '../components/Metadata';
 import { useWindowWidth, getPrevStation, useStation } from '../hooks';
-import { InfoBox } from '../components/InfoBox';
 import { Column } from '../components/Column';
 import { Status, Train } from '../types/Train';
 
@@ -12,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { prevStation: getPrevStation(context) ?? '' },
 });
 
-const OFFLINE = {
+const OFFLINE_DATA = {
   lineName: 'Offline',
   headsign: '',
   lineColors: ['grey'],
@@ -31,9 +30,13 @@ export default function Offline({ prevStation }: { prevStation: string }) {
         <Metadata />
       </Head>
       <main className={styles.main}>
-        <TopNav selectedStation={station} setStation={setStation} />
-        {<Column trains={[OFFLINE]} isNarrow={isNarrow} />}
-        <InfoBox isLocating displayText={''} isNarrow={isNarrow} />
+        <TopNav
+          isLocating={false}
+          selectedStation={station}
+          setStation={setStation}
+          isNarrow={isNarrow}
+        />
+        {<Column trains={[OFFLINE_DATA]} isNarrow={isNarrow} />}
       </main>
     </>
   );
