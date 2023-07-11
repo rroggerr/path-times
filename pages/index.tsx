@@ -4,7 +4,6 @@ import { Column } from '../components/Column';
 import styles from '../styles/Home.module.css';
 import { Direction } from '../types/Train';
 import {
-  useAlerts,
   useConstantWakeLock,
   useGetTimes,
   useStation,
@@ -13,6 +12,7 @@ import {
 import { TopNav } from '../components/TopNav';
 import { Metadata } from '../components/Metadata';
 import { getPrevStation, useServiceWorker } from '../hooks';
+import Script from 'next/script';
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { prevStation: getPrevStation(context) ?? '' },
@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 
 export default function Home({ prevStation }: { prevStation: string }) {
   const { station, isLocating, setStation } = useStation(prevStation);
-  const { affectedLines } = useAlerts();
   const { data } = useGetTimes({
     station: station.station,
     dir: Direction.ALL,
@@ -35,6 +34,16 @@ export default function Home({ prevStation }: { prevStation: string }) {
         <title>{`Path Schedule - ${station.name}`}</title>
         <Metadata />
       </Head>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-BM6ZJN3E07"
+      ></Script>
+      <Script id="gas">
+        {`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BM6ZJN3E07');`}
+      </Script>
       <main className={styles.main}>
         <TopNav
           selectedStation={station}
@@ -42,15 +51,7 @@ export default function Home({ prevStation }: { prevStation: string }) {
           isLocating={isLocating}
           isNarrow={isNarrow}
         />
-        {data ? (
-          <Column
-            trains={data}
-            isNarrow={isNarrow}
-            affectedLines={affectedLines}
-          />
-        ) : (
-          <p>Loading</p>
-        )}
+        {data ? <Column trains={data} isNarrow={isNarrow} /> : <p>Loading</p>}
       </main>
     </>
   );

@@ -1,5 +1,3 @@
-import Script from 'next/script';
-
 export const Metadata = () => {
   return (
     <>
@@ -20,16 +18,6 @@ export const Metadata = () => {
         property="og:description"
         content="Live board showing PATH train arrivals"
       />
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-BM6ZJN3E07"
-      ></Script>
-      <Script id="gas">
-        {`window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-BM6ZJN3E07');`}
-      </Script>
     </>
   );
 };
