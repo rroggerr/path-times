@@ -50,7 +50,7 @@ export const Column = ({ affectedLines, trains, isNarrow }: Props) => {
             arrMins={arrMins}
             circles={train.lineColors}
             isApproaching={train.status === Status.ARRIVING_NOW}
-            isDelay={train.status === Status.DELAY}
+            isDelay={train.status === Status.DELAYED}
             isNarrow={isNarrow}
             showAbsTime={showAbsTime}
             absTime={getAbsTime(train)}

@@ -6,7 +6,7 @@ export enum Direction {
 
 export enum Status {
   ON_TIME = 'ON_TIME',
-  DELAY = 'DELAY',
+  DELAYED = 'DELAYED',
   ARRIVING_NOW = 'ARRIVING_NOW',
 }
 
