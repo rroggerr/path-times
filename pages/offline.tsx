@@ -31,7 +31,6 @@ export default function Offline({ prevStation }: { prevStation: string }) {
       </Head>
       <main className={styles.main}>
         <TopNav
-          isLocating={false}
           selectedStation={station}
           setStation={setStation}
           isNarrow={isNarrow}

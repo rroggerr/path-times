@@ -1,0 +1,21 @@
+.toastWrapper {
+  cursor: pointer;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  background-color: #044abc;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 500px;
+}
+
+.toastText {
+  font-weight: 500;
+  font-size: 18px;
+}

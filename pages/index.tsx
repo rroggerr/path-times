@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import Script from 'next/script';
 import { Column } from '../components/Column';
 import styles from '../styles/Home.module.css';
 import { Direction } from '../types/Train';
@@ -8,18 +9,20 @@ import {
   useGetTimes,
   useStation,
   useWindowWidth,
+  getPrevStation,
+  useServiceWorker,
 } from '../hooks';
 import { TopNav } from '../components/TopNav';
 import { Metadata } from '../components/Metadata';
-import { getPrevStation, useServiceWorker } from '../hooks';
-import Script from 'next/script';
+import { StationToast } from '../components/StationToast';
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { prevStation: getPrevStation(context) ?? '' },
 });
 
 export default function Home({ prevStation }: { prevStation: string }) {
-  const { station, isLocating, setStation } = useStation(prevStation);
+  const { station, setStation, nearestStation } = useStation(prevStation);
+
   const { data } = useGetTimes({
     station: station.station,
     dir: Direction.ALL,
@@ -48,10 +51,12 @@ export default function Home({ prevStation }: { prevStation: string }) {
         <TopNav
           selectedStation={station}
           setStation={setStation}
-          isLocating={isLocating}
           isNarrow={isNarrow}
         />
         {data ? <Column trains={data} isNarrow={isNarrow} /> : <p>Loading</p>}
+        {nearestStation && (
+          <StationToast recc={nearestStation} setStation={setStation} />
+        )}
       </main>
     </>
   );

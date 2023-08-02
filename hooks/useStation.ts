@@ -16,6 +16,7 @@ export const useStation = (prevStation: string) => {
 
   const isModified = useRef(false);
   const [isLocating, setIsLocating] = useState(false);
+  const [nearestStation, setNearestStation] = useState<StationInfo | null>();
   const [station, _setStation] = useState<StationInfo>(
     foundStation ?? FALLBACK_STATION
   );
@@ -28,6 +29,7 @@ export const useStation = (prevStation: string) => {
 
   useEffect(() => {
     relocate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const relocate = () => {
@@ -38,7 +40,9 @@ export const useStation = (prevStation: string) => {
         setIsLocating(false);
         if (isModified.current === false) {
           setCookie(COOKIE_KEY, nearest.station);
-          _setStation(nearest);
+          if (nearest !== station) {
+            setNearestStation(nearest);
+          }
         }
       },
       () => {
@@ -47,5 +51,5 @@ export const useStation = (prevStation: string) => {
     );
   };
 
-  return { station, relocate, isLocating, setStation };
+  return { station, relocate, isLocating, setStation, nearestStation };
 };
