@@ -37,9 +37,11 @@ export const Row = ({
 
   return (
     <div
-      className={`${isApproaching ? styles.approaching : ''} ${
-        isNarrow ? styles.narrowRow : ''
-      } ${styles.row}`}
+      className={[
+        styles.row,
+        isApproaching ? styles.approaching : '',
+        isNarrow ? styles.narrowRow : '',
+      ].join(' ')}
       onClick={onTimeClick}
     >
       <div
@@ -54,29 +56,23 @@ export const Row = ({
       <p className={isNarrow ? styles.narrowLineText : styles.lineText}>
         {lineName}
       </p>
-      {hasAlert ? (
+      {hasAlert || isDelay ? (
         <button className={styles.alertButton} onClick={handleAlertClick}>
           <Image src="/alert.svg" width={28} height={28} alt="alert" />
         </button>
       ) : (
         <p>&nbsp;</p>
       )}
-      <>
-        {isDelay ? (
-          <p className={`${styles.timeText}`}>Delay</p>
+      <div className={`${styles.timeBox}`}>
+        {showAbsTime ? (
+          <p className={styles.timeText}>{absTime}</p>
         ) : (
-          <div className={`${styles.timeBox}`}>
-            {showAbsTime ? (
-              <p className={styles.timeText}>{absTime}</p>
-            ) : (
-              <div className={styles.timeVerticalWrapper}>
-                <p className={styles.timeText}>{arrMins}</p>
-                <p className={styles.minText}>min</p>
-              </div>
-            )}
+          <div className={styles.timeVerticalWrapper}>
+            <p className={styles.timeText}>{arrMins}</p>
+            <p className={styles.minText}>min</p>
           </div>
         )}
-      </>
+      </div>
     </div>
   );
 };
