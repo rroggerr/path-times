@@ -1,12 +1,17 @@
 .toastWrapper {
   cursor: pointer;
   position: absolute;
-  bottom: 60px;
+  bottom: 50px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .toast {
+  @media (width <= 480px) {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
   display: flex;
   align-items: center;
   background-color: #044abc;
@@ -16,6 +21,12 @@
 }
 
 .toastText {
+  @media (width <= 480px) {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0 6px;
+  }
   font-weight: 500;
   font-size: 18px;
+  padding: 0 16px;
 }

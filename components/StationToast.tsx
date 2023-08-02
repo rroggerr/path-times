@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import Image from 'next/image';
 import styles from '../styles/StationToast.module.css';
 import { StationInfo } from '../types/Station';
@@ -7,9 +7,9 @@ type Props = { recc: StationInfo; setStation: (station: StationInfo) => void };
 
 export const StationToast = ({ recc, setStation }: Props) => {
   const [isHidden, setHidden] = useState(false);
-  const locationPrompt = `Switch to ${recc.name}`;
 
-  const handleXClick = () => {
+  const handleXClick: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.stopPropagation();
     setHidden(true);
   };
 
@@ -29,11 +29,12 @@ export const StationToast = ({ recc, setStation }: Props) => {
           src="/location-pin.svg"
           width={20}
           height={20}
-          alt={locationPrompt}
+          alt="Switch station"
         />
-        &nbsp;&nbsp;&nbsp;
-        <p className={styles.toastText}>{locationPrompt}</p>
-        &nbsp;&nbsp;&nbsp;
+        <p className={styles.toastText}>
+          Switch to <wbr />
+          {recc.name}
+        </p>
         <div role="button" className={styles.toastText} onClick={handleXClick}>
           {'✕'}
         </div>
