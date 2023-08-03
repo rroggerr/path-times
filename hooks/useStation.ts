@@ -39,7 +39,6 @@ export const useStation = (prevStation: string) => {
         const nearest = getNearestStation(coords);
         setIsLocating(false);
         if (isModified.current === false) {
-          setCookie(COOKIE_KEY, nearest.station);
           if (nearest !== station) {
             setNearestStation(nearest);
           }
