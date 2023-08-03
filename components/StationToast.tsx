@@ -35,7 +35,7 @@ export const StationToast = ({ recc, setStation }: Props) => {
           Switch to <wbr />
           {recc.name}
         </p>
-        <div role="button" className={styles.toastText} onClick={handleXClick}>
+        <div role="button" className={styles.xbutton} onClick={handleXClick}>
           {'✕'}
         </div>
       </div>

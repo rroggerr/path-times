@@ -1,4 +1,7 @@
 .toastWrapper {
+  @media (width <= 500px) {
+    width: 80%
+  }
   cursor: pointer;
   position: absolute;
   bottom: 50px;
@@ -6,27 +9,32 @@
   transform: translate(-50%, -50%);
 }
 
+.xbutton {
+  border-left: solid #0356dc;
+  padding: 2px 8px 2px 8px;
+}
+
 .toast {
-  @media (width <= 480px) {
+  @media (width <= 500px) {
     font-weight: 500;
     font-size: 14px;
-    padding: 8px 12px;
+    padding: 8px 8px 8px 12px;
+    justify-content: space-between;
   }
   display: flex;
   align-items: center;
   background-color: #044abc;
   color: white;
-  padding: 10px 24px;
+  padding: 10px 10px 10px 12px;
   border-radius: 500px;
 }
 
 .toastText {
-  @media (width <= 480px) {
+  @media (width <= 500px) {
     font-weight: 500;
     font-size: 14px;
-    padding: 0 6px;
+    padding: 0 4px;
   }
-  font-weight: 500;
-  font-size: 18px;
-  padding: 0 16px;
+  font-size: 16px;
+  padding: 0 8px 0 16px;
 }
