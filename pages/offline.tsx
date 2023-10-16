@@ -1,14 +1,14 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { TopNav } from '../components/TopNav';
 import { Metadata } from '../components/Metadata';
-import { useWindowWidth, getPrevStation, useStation } from '../hooks';
+import { useWindowWidth, useStation } from '../hooks';
 import { Column } from '../components/Column';
 import { Status, Train } from '../types/Train';
 
-export const getServerSideProps: GetServerSideProps = async (context) => ({
-  props: { prevStation: getPrevStation(context) ?? '' },
+export const getStaticProps: GetStaticProps = async () => ({
+  props: { prevStation: '' },
 });
 
 const OFFLINE_DATA = {
