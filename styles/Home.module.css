@@ -4,6 +4,13 @@
   min-height: 100vh;
 }
 
+.loadingDiv {
+  display: flex;
+  margin-top: calc(var(--topnav-height) * 2);
+  justify-content: center;
+  align-items: center;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;

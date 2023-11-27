@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 export default function Home({ prevStation }: { prevStation: string }) {
   const { station, setStation, nearestStation } = useStation(prevStation);
 
-  const { data } = useGetTimes({
+  const { data, isLoading } = useGetTimes({
     station: station.station,
     dir: Direction.ALL,
   });
@@ -53,7 +53,12 @@ export default function Home({ prevStation }: { prevStation: string }) {
           setStation={setStation}
           isNarrow={isNarrow}
         />
-        {data ? <Column trains={data} isNarrow={isNarrow} /> : <p>Loading</p>}
+        {data && <Column trains={data} isNarrow={isNarrow} />}
+        {isLoading && (
+          <div className={styles.loadingDiv}>
+            <p>Loading...</p>
+          </div>
+        )}
         {nearestStation && (
           <StationToast recc={nearestStation} setStation={setStation} />
         )}
