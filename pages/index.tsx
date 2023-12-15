@@ -15,6 +15,7 @@ import {
 import { TopNav } from '../components/TopNav';
 import { Metadata } from '../components/Metadata';
 import { StationToast } from '../components/StationToast';
+import { RenewalModal, useRenewalModal } from '../components/RenewalModal';
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { prevStation: getPrevStation(context) ?? '' },
@@ -22,6 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 
 export default function Home({ prevStation }: { prevStation: string }) {
   const { station, setStation, nearestStation } = useStation(prevStation);
+  const { showModal, closeModal } = useRenewalModal();
 
   const { data, isLoading } = useGetTimes({
     station: station.station,
@@ -62,6 +64,7 @@ export default function Home({ prevStation }: { prevStation: string }) {
         {nearestStation && (
           <StationToast recc={nearestStation} setStation={setStation} />
         )}
+        {showModal && <RenewalModal onClose={closeModal} />}
       </main>
     </>
   );
