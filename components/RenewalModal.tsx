@@ -5,6 +5,8 @@ interface Props {
   onClose: () => void;
 }
 
+const SITE_URL = 'https://www.path-schedule.com';
+
 export const RenewalModal = ({ onClose }: Props) => {
   return (
     <div className={styles.modal}>
@@ -13,18 +15,9 @@ export const RenewalModal = ({ onClose }: Props) => {
       </p>
       <div>
         <p className={styles.modalSection}>
-          This domain will no longer be valid soon. The cost to renew this domain is
-          too high so I will not be using it for now.
+          This site has been moved to <a href={SITE_URL}>{SITE_URL}</a>
         </p>
-        <p className={styles.modalSection}>
-          In the meantime, you can still access this site from{' '}
-          <a href={'https://path-schedule.vercel.app/'}>
-            https://path-schedule.vercel.app/
-          </a>
-        </p>
-        <p className={styles.modalSection}>
-          Updates will also be posted in regards to what the new domain will be.
-        </p>
+        <p className={styles.modalSection}>Please visit our new site!</p>
         <button onClick={onClose} className={styles.gotIt}>
           Got it
         </button>
