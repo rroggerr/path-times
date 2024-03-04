@@ -16,10 +16,11 @@ export const useGetTimes = ({ station, dir }: Params): SWRResponse<Train[]> => {
     (url: string) => fetch(url).then((resp) => resp.json()),
     { refreshInterval: 5000 }
   );
+  const { data } = resp ?? {};
 
-  if (resp.data && resp.data.length > 0 && resp.data !== prevData) {
-    prevData.current = resp.data;
+  if (data?.length > 0 && data !== prevData) {
+    prevData.current = data;
   }
 
-  return { ...resp, data: resp.data.length > 0 ? resp.data : prevData.current };
+  return { ...resp, data: data?.length > 0 ? data : prevData.current };
 };
